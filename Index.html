@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="1ua-lmtMTdvUZi1tYAqktED0F9Y-iuJZq2Eq_hzFSXU" />
   <title>Diego Hernandez | About Me</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -527,6 +528,15 @@
           <p class="mono" id="btcAddress">bc1qqvdfylxhdpecx450rjcmz7qyx2y42h66trmrhf</p>
           <p>Developer contact: <a href="mailto:russcript.co@gmail.com">russcript.co@gmail.com</a></p>
         </div>
+        <div class="donation-box" style="margin-top: 0.8rem;">
+          <p>If you want to support Diego directly, you can donate on Cash App:</p>
+          <p class="mono">$Diegothewise</p>
+          <p>
+            <a class="btn btn-primary" href="https://cash.app/$Diegothewise" target="_blank" rel="noopener noreferrer">
+              Donate to Diego
+            </a>
+          </p>
+        </div>
       </section>
 
       <section class="section" id="contact">
@@ -560,14 +570,35 @@
     </div>
   </div>
 
+  <div class="modal-backdrop" id="diegoDonationModal" aria-hidden="true" role="dialog" aria-label="Support Diego popup">
+    <div class="modal">
+      <button class="close-btn" type="button" id="closeDiegoPopup" aria-label="Close Diego popup">x</button>
+      <h3>Support Diego</h3>
+      <p>
+        If you want to support Diego directly, you can donate through Cash App.
+      </p>
+      <p class="mono">Cash App: $Diegothewise</p>
+      <div class="modal-actions">
+        <a class="btn btn-primary" href="https://cash.app/$Diegothewise" target="_blank" rel="noopener noreferrer" id="donateDiegoNow">Donate to Diego</a>
+        <button class="btn btn-secondary" type="button" id="donateDiegoLater">Maybe later</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     (function () {
       var modal = document.getElementById("donationModal");
       var donateYes = document.getElementById("donateYes");
       var donateLater = document.getElementById("donateLater");
       var closePopup = document.getElementById("closePopup");
+      var diegoModal = document.getElementById("diegoDonationModal");
+      var donateDiegoNow = document.getElementById("donateDiegoNow");
+      var donateDiegoLater = document.getElementById("donateDiegoLater");
+      var closeDiegoPopup = document.getElementById("closeDiegoPopup");
       var fortyEightHours = 48 * 60 * 60 * 1000;
-      var storageKey = "diegoDevPopupSeenAt";
+      var twentyFourHours = 24 * 60 * 60 * 1000;
+      var devStorageKey = "diegoDevPopupSeenAt";
+      var diegoStorageKey = "diegoDonationPopupSeenAt";
 
       function showModal() {
         modal.style.display = "flex";
@@ -579,13 +610,32 @@
         modal.setAttribute("aria-hidden", "true");
       }
 
-      function recordSeen() {
-        localStorage.setItem(storageKey, String(Date.now()));
+      function showDiegoModal() {
+        diegoModal.style.display = "flex";
+        diegoModal.setAttribute("aria-hidden", "false");
       }
 
-      function shouldShowPopup() {
-        var lastSeen = Number(localStorage.getItem(storageKey) || "0");
+      function hideDiegoModal() {
+        diegoModal.style.display = "none";
+        diegoModal.setAttribute("aria-hidden", "true");
+      }
+
+      function recordDevSeen() {
+        localStorage.setItem(devStorageKey, String(Date.now()));
+      }
+
+      function recordDiegoSeen() {
+        localStorage.setItem(diegoStorageKey, String(Date.now()));
+      }
+
+      function shouldShowDevPopup() {
+        var lastSeen = Number(localStorage.getItem(devStorageKey) || "0");
         return Date.now() - lastSeen >= fortyEightHours;
+      }
+
+      function shouldShowDiegoPopup() {
+        var lastSeen = Number(localStorage.getItem(diegoStorageKey) || "0");
+        return Date.now() - lastSeen >= twentyFourHours;
       }
 
       function launchConfetti() {
@@ -608,28 +658,51 @@
 
       donateYes.addEventListener("click", function () {
         launchConfetti();
-        recordSeen();
+        recordDevSeen();
         hideModal();
       });
 
       donateLater.addEventListener("click", function () {
-        recordSeen();
+        recordDevSeen();
         hideModal();
       });
 
       closePopup.addEventListener("click", function () {
-        recordSeen();
+        recordDevSeen();
         hideModal();
+      });
+
+      donateDiegoNow.addEventListener("click", function () {
+        recordDiegoSeen();
+      });
+
+      donateDiegoLater.addEventListener("click", function () {
+        recordDiegoSeen();
+        hideDiegoModal();
+      });
+
+      closeDiegoPopup.addEventListener("click", function () {
+        recordDiegoSeen();
+        hideDiegoModal();
       });
 
       modal.addEventListener("click", function (event) {
         if (event.target === modal) {
-          recordSeen();
+          recordDevSeen();
           hideModal();
         }
       });
 
-      if (shouldShowPopup()) {
+      diegoModal.addEventListener("click", function (event) {
+        if (event.target === diegoModal) {
+          recordDiegoSeen();
+          hideDiegoModal();
+        }
+      });
+
+      if (shouldShowDiegoPopup()) {
+        showDiegoModal();
+      } else if (shouldShowDevPopup()) {
         showModal();
       }
     }());
