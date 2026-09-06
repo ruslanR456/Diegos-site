@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diego Hernandez | About Me</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-1: #f7f3ea;
+      --bg-2: #dbe9ee;
+      --ink: #1f2a35;
+      --card: #ffffff;
+      --line: #ccd6e0;
+      --accent: #d3552f;
+      --accent-2: #19756a;
+      --shadow: 0 14px 34px rgba(22, 33, 46, 0.12);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Outfit", sans-serif;
+      line-height: 1.65;
+      background:
+        radial-gradient(circle at 10% 5%, rgba(211, 85, 47, 0.18), transparent 35%),
+        radial-gradient(circle at 88% 12%, rgba(25, 117, 106, 0.2), transparent 34%),
+        linear-gradient(165deg, var(--bg-1) 0%, #f3f0e8 40%, var(--bg-2) 100%);
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(31, 42, 53, 0.12);
+      background: rgba(247, 243, 234, 0.88);
+    }
+
+    .top-inner {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 0.8rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand {
+      text-decoration: none;
+      color: var(--accent-2);
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      color: var(--ink);
+      text-decoration: none;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      padding: 0.38rem 0.72rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      transition: all 170ms ease;
+    }
+
+    .menu a:hover {
+      border-color: var(--line);
+      background: #ffffff;
+    }
+
+    .hero {
+      margin-top: 1.2rem;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1rem;
+    }
+
+    .hero-card,
+    .hero-photo,
+    .section {
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 1px solid rgba(31, 42, 53, 0.1);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-card {
+      padding: 2rem;
+      animation: reveal 700ms ease both;
+    }
+
+    .hero-kicker {
+      margin: 0;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0 0 0.8rem;
+      line-height: 1.15;
+    }
+
+    h1,
+    h2 {
+      font-family: "DM Serif Display", serif;
+      letter-spacing: 0.2px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+    }
+
+    h2 {
+      font-size: clamp(1.55rem, 3.3vw, 2.1rem);
+    }
+
+    .hero-text {
+      margin: 0 0 1rem;
+      font-size: 1.03rem;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .btn {
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 0.72rem 1.1rem;
+      font-weight: 800;
+      font-size: 0.92rem;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #d3552f, #be4421);
+      color: #fff;
+      box-shadow: 0 10px 18px rgba(211, 85, 47, 0.28);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: #fff;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-photo {
+      min-height: 440px;
+      animation: reveal 900ms ease both;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .section {
+      margin-top: 1rem;
+      padding: 1.3rem;
+      animation: reveal 680ms ease both;
+    }
+
+    .list {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+
+    .list li {
+      margin-bottom: 0.5rem;
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: #fbfbfb;
+      border-radius: 14px;
+      padding: 1rem;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .gallery figure {
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #f0f4f7;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery figcaption {
+      padding: 0.55rem 0.7rem;
+      font-size: 0.87rem;
+      font-weight: 600;
+    }
+
+    .contact-box,
+    .donation-box {
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      padding: 0.95rem;
+      background: linear-gradient(135deg, rgba(211, 85, 47, 0.09), rgba(25, 117, 106, 0.11));
+    }
+
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92rem;
+      background: rgba(255, 255, 255, 0.75);
+      border-radius: 8px;
+      border: 1px dashed rgba(31, 42, 53, 0.24);
+      padding: 0.55rem;
+      overflow-wrap: anywhere;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 1.6rem 1rem 2.2rem;
+      color: #435363;
+      font-size: 0.92rem;
+    }
+
+    .footer a,
+    .contact-box a,
+    .donation-box a {
+      color: var(--accent-2);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .footer a:hover,
+    .contact-box a:hover,
+    .donation-box a:hover {
+      text-decoration: underline;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(16, 24, 35, 0.62);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 80;
+      padding: 1rem;
+    }
+
+    .modal {
+      width: min(95vw, 560px);
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      box-shadow: 0 24px 50px rgba(16, 24, 35, 0.35);
+      padding: 1rem;
+      position: relative;
+      animation: pop 230ms ease-out both;
+    }
+
+    .close-btn {
+      position: absolute;
+      right: 0.65rem;
+      top: 0.65rem;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      width: 34px;
+      height: 34px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 0.8rem;
+    }
+
+    .confetti {
+      position: fixed;
+      top: -12px;
+      width: 8px;
+      height: 14px;
+      z-index: 90;
+      pointer-events: none;
+      opacity: 0;
+      animation: fall 1600ms linear forwards;
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pop {
+      from {
+        opacity: 0;
+        transform: scale(0.94);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(110vh) rotate(540deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 920px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-photo {
+        min-height: 340px;
+      }
+
+      .grid-two,
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .top-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-card {
+        padding: 1.2rem;
+      }
+
+      .section {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="#home">Diego Hernandez</a>
+      <nav class="menu" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#leadership">Leadership</a>
+        <a href="#issues">Issues</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page">
+    <section class="hero" id="home">
+      <article class="hero-card">
+        <p class="hero-kicker">Community, justice, action</p>
+        <h1>About Me</h1>
+        <p class="hero-text">
+          Hello, I am Diego Hernandez. From a young age, I have always wanted to make a big impact,
+          whether that was in my community or through the world.
+        </p>
+        <p class="hero-text">
+          I am 14 years old, I go to Alonso High School, and I take part in the International
+          Baccalaureate (IB) program.
+        </p>
+        <p class="hero-text">
+          I care about my community, so join me to advocate for what is right and what benefits our
+          community.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#contact">Connect With Me</a>
+          <a class="btn btn-secondary" href="#donate">Support Developers</a>
+        </div>
+      </article>
+      <figure class="hero-photo" aria-label="Diego photo">
+        <img src="a75dd563-2d8b-4cfa-a964-43525eb21d9c.jpg" alt="Diego in front of an aquarium display" />
+      </figure>
+    </section>
+
+    <main>
+      <section class="section" id="about">
+        <h2>My Mission</h2>
+        <p>
+          I believe leadership means showing up, listening, and doing the work. My goal is to use my
+          voice and actions to improve lives in Tampa and beyond.
+        </p>
+      </section>
+
+      <section class="section" id="leadership">
+        <h2>Leadership &amp; Experience</h2>
+        <div class="grid-two">
+          <article class="card">
+            <h3>School and Achievement</h3>
+            <ul class="list">
+              <li>Represented my school in the Hillsborough County Student Forum with the Board of Education.</li>
+              <li>Student government participation.</li>
+              <li>Multiple academic awards, including an academic excellence award from the President for education.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Community Action</h3>
+            <ul class="list">
+              <li>Active in the community, not only talking about issues but helping solve them.</li>
+              <li>Cleaned and picked up waste from parks, streets, and trails around Tampa.</li>
+              <li>Advocated for equal rights, justice for immigrants, women's bodily autonomy, affordable healthcare, transparency in government, and climate change awareness.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="issues">
+        <h2>Issues I Care About</h2>
+        <div class="grid-two">
+          <article class="card">
+            <ul class="list">
+              <li>The current injustice of the Department of Homeland Security.</li>
+              <li>Immigrant rights.</li>
+              <li>Climate change.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <ul class="list">
+              <li>Using taxpayer money responsibly and not for wars.</li>
+              <li>Enforcing global alliances.</li>
+              <li>Shutting down data centers.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="gallery">
+        <h2>Image Gallery</h2>
+        <div class="gallery">
+          <figure>
+            <img src="a75dd563-2d8b-4cfa-a964-43525eb21d9c.jpg" alt="Diego at an aquarium with blue lighting" />
+            <figcaption>Community energy and confidence.</figcaption>
+          </figure>
+          <figure>
+            <img src="IMG_2507.png" alt="Diego gallery image" />
+            <figcaption>Another moment from my journey.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section" id="donate">
+        <h2>Support The Developers</h2>
+        <div class="donation-box">
+          <p>
+            If you want to support the developers who helped build this site, you can donate using BTC:
+          </p>
+          <p class="mono" id="btcAddress">bc1qqvdfylxhdpecx450rjcmz7qyx2y42h66trmrhf</p>
+          <p>Developer contact: <a href="mailto:russcript.co@gmail.com">russcript.co@gmail.com</a></p>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <h2>Contact</h2>
+        <div class="contact-box">
+          <p>Email: <a href="mailto:diegohdezoliva@gmail.com">diegohdezoliva@gmail.com</a></p>
+          <p>Phone: <a href="tel:+16567890067">(656) 789-0067</a></p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    Diego Hernandez | Community advocate<br />
+    Developer contact: <a href="mailto:russcript.co@gmail.com">russcript.co@gmail.com</a>
+  </footer>
+
+  <div class="modal-backdrop" id="donationModal" aria-hidden="true" role="dialog" aria-label="Support the developers popup">
+    <div class="modal">
+      <button class="close-btn" type="button" id="closePopup" aria-label="Close popup">x</button>
+      <h3>Support The Devs</h3>
+      <p>
+        Want to support the developers? Your support helps keep projects like this improving.
+      </p>
+      <p class="mono">BTC: bc1qqvdfylxhdpecx450rjcmz7qyx2y42h66trmrhf</p>
+      <p>Contact devs: <a href="mailto:russcript.co@gmail.com">russcript.co@gmail.com</a></p>
+      <div class="modal-actions">
+        <button class="btn btn-primary" type="button" id="donateYes">Yes, I will donate</button>
+        <button class="btn btn-secondary" type="button" id="donateLater">Maybe later</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var modal = document.getElementById("donationModal");
+      var donateYes = document.getElementById("donateYes");
+      var donateLater = document.getElementById("donateLater");
+      var closePopup = document.getElementById("closePopup");
+      var fortyEightHours = 48 * 60 * 60 * 1000;
+      var storageKey = "diegoDevPopupSeenAt";
+
+      function showModal() {
+        modal.style.display = "flex";
+        modal.setAttribute("aria-hidden", "false");
+      }
+
+      function hideModal() {
+        modal.style.display = "none";
+        modal.setAttribute("aria-hidden", "true");
+      }
+
+      function recordSeen() {
+        localStorage.setItem(storageKey, String(Date.now()));
+      }
+
+      function shouldShowPopup() {
+        var lastSeen = Number(localStorage.getItem(storageKey) || "0");
+        return Date.now() - lastSeen >= fortyEightHours;
+      }
+
+      function launchConfetti() {
+        var colors = ["#d3552f", "#19756a", "#2e86de", "#f4b400", "#111111"];
+        for (var i = 0; i < 120; i += 1) {
+          var piece = document.createElement("span");
+          piece.className = "confetti";
+          piece.style.left = Math.random() * 100 + "vw";
+          piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+          piece.style.animationDelay = Math.random() * 250 + "ms";
+          piece.style.transform = "translateY(0) rotate(" + Math.random() * 360 + "deg)";
+          document.body.appendChild(piece);
+          setTimeout(function (el) {
+            return function () {
+              el.remove();
+            };
+          }(piece), 1800);
+        }
+      }
+
+      donateYes.addEventListener("click", function () {
+        launchConfetti();
+        recordSeen();
+        hideModal();
+      });
+
+      donateLater.addEventListener("click", function () {
+        recordSeen();
+        hideModal();
+      });
+
+      closePopup.addEventListener("click", function () {
+        recordSeen();
+        hideModal();
+      });
+
+      modal.addEventListener("click", function (event) {
+        if (event.target === modal) {
+          recordSeen();
+          hideModal();
+        }
+      });
+
+      if (shouldShowPopup()) {
+        showModal();
+      }
+    }());
+  </script>
+</body>
+</html>
